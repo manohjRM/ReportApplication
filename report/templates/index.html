@@ -1,0 +1,53 @@
+{% extends 'home.html' %}
+
+{% block body %}
+<style>
+    tr{
+        text-align : center;
+    }
+    
+</style>
+
+<div class="container text-center">
+    <div>
+        <br>
+        <h1>Contacts</h1>
+        <div class="row button-group">
+            <div class="col-sm-2">
+                <a href='{%url "add_customer" %}' class="btn btn-primary btn-md" role="button">Add New Customer</a>
+            </div>  
+        </div>
+        <br>
+        <table class="table table-hover">
+            <tr>
+                <th>ID</th>
+                <th>Company_name</th>
+                <th>Contact_person</th>
+                <th>Mobile_number</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        
+        <tbody>
+            {% for company in company %}
+            <tr>
+                <td>{{ company.pk }}</td>
+                <td>{{ company.Company_name }}</td>
+                <td>{{ company.Contact_person }}</td>
+                <td>{{ company.Mobile_number }}</td>
+                <td>
+                    <a href="{% url 'edit_customer' company.pk %}" class="btn btn-warning" role="button">Edit</a>
+                </td>
+                <td>
+                    <a href="{% url 'del_customer' company.pk %}" class="btn btn-danger" role="button">x</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+</div>
+
+
+
+{% endblock %}
